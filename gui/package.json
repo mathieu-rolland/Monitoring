@@ -1,0 +1,14 @@
+{
+  "name": "gui",
+  "version": "0.0.1",
+  "description": "Display monitoring status",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mathieu ROLLAND",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^13.4.1"
+  }
+}
