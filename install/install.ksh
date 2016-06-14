@@ -17,7 +17,7 @@ export LOG_DIR="/varsoft/jenkins/logs/monitoring"
 SSA_PRODUCT_DIR="${PRODUCT}/${SSA_NAME}"
 DEV_DIR="/home/mathieu/dev${SSA_PRODUCT_DIR}"
 
-logInit "monitoring_install"
+initLog "monitoring_install"
 
 logInfo "Workspace : ${WORKSPACE}"
 logInfo "Deploy directory : ${DEV_DIR}"
