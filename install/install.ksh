@@ -24,7 +24,14 @@ logInfo "Deploy directory : ${DEV_DIR}"
 
 cd "${WORKSPACE}"
 tar -zcvf "monitoring.tar.gz" ./*
+
+cd "${DEV_DIR}"
+rm -rf "${DEV_DIR}"
+mkdir "${DEV_DIR}"
+
 mv "${WORKSPACE}/monitoring.tar.gz" "${DEV_DIR}"
+cd "${DEV_DIR}"
+tar -zxvf monitoring.tar.gz
 
 cd "${DEV_DIR}/gui"
 npm install
