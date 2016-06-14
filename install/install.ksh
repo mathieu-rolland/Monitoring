@@ -25,24 +25,66 @@ logInfo "Deploy directory : ${DEV_DIR}"
 cd "${WORKSPACE}"
 logInfo "Generate package..."
 tar -zcvf "monitoring.tar.gz" ./*
-
+returnCode=$?
+if [ "${returnCode}" -ne 0 ]
+then
+	logError "Failed to package Monitoring project"
+	exit 1
+fi
 
 logInfo "Cleaning dev directory : ${DEV_DIR}"
 rm -rf "${DEV_DIR}"
+returnCode=$?
+if [ "${returnCode}" -ne 0 ]
+then
+	logError "Failed to clean Monitoring environnement"
+	exit 1
+fi
+
 mkdir "${DEV_DIR}"
+returnCode=$?
+if [ "${returnCode}" -ne 0 ]
+then
+	logError "Failed to create directory ${DEV_DIR}"
+	exit 1
+fi
 
 logInfo "Transfert package to ${DEV_DIR}"
 mv "${WORKSPACE}/monitoring.tar.gz" "${DEV_DIR}"
+returnCode=$?
+if [ "${returnCode}" -ne 0 ]
+then
+	logError "Failed to transfert package Monitoring.tar.gz"
+	exit 1
+fi
 
 logInfo "Extract package to ${DEV_DIR}"
 cd "${DEV_DIR}"
 tar -zxvf monitoring.tar.gz
+returnCode=$?
+if [ "${returnCode}" -ne 0 ]
+then
+	logError "Failed to deploy package Monitoring.tar.gz"
+	exit 1
+fi
 
 logInfo "Install GUI to ${DEV_DIR}/gui"
 cd "${DEV_DIR}/gui"
 npm install
+returnCode=$?
+if [ "${returnCode}" -ne 0 ]
+then
+	logError "Failed to install GUI"
+	exit 1
+fi
 
 logInfo "Start server"
 export BUILD_ID=dontKillMe
 nohup npm start &
 
+returnCode=$?
+if [ "${returnCode}" -ne 0 ]
+then
+	logError "Failed to start GUI"
+	exit 1
+fi
