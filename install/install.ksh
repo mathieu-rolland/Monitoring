@@ -23,15 +23,21 @@ logInfo "Workspace : ${WORKSPACE}"
 logInfo "Deploy directory : ${DEV_DIR}"
 
 cd "${WORKSPACE}"
+logInfo "Generate package..."
 tar -zcvf "monitoring.tar.gz" ./*
 
-cd "${DEV_DIR}"
+
+logInfo "Cleaning dev directory : ${DEV_DIR}"
 rm -rf "${DEV_DIR}"
 mkdir "${DEV_DIR}"
 
+logInfo "Transfert package to ${DEV_DIR}"
 mv "${WORKSPACE}/monitoring.tar.gz" "${DEV_DIR}"
+
+logInfo "Extract package to ${DEV_DIR}"
 cd "${DEV_DIR}"
 tar -zxvf monitoring.tar.gz
 
+logInfo "Install GUI to ${DEV_DIR}/gui"
 cd "${DEV_DIR}/gui"
 npm install
