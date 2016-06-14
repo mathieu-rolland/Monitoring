@@ -41,3 +41,8 @@ tar -zxvf monitoring.tar.gz
 logInfo "Install GUI to ${DEV_DIR}/gui"
 cd "${DEV_DIR}/gui"
 npm install
+
+logInfo "Start server"
+export BUILD_ID=dontKillMe
+nohup npm start &
+
