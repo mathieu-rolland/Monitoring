@@ -14,15 +14,16 @@ export LOG_DIR="/varsoft/jenkins/logs/monitoring"
 . "${SHARED_FOLDER}/sh/common.sh"
 . "${SHARED_FOLDER}/sh/logging.sh"
 
-SSA_PRODUCT_DIR="${PRODUCT}/${SSA_NAME}"
+SSA_PRODUCT_DIR="${PRODUCT_DIR}/${SSA_NAME}"
 DEV_DIR="/home/mathieu/dev${SSA_PRODUCT_DIR}"
 
 initLog "monitoring_install"
-
+logInfo "*********** Start installation ********************"
 logInfo "Workspace : ${WORKSPACE}"
 logInfo "Deploy directory : ${DEV_DIR}"
 
-cd ${WORKSPACE}
-cd /product/monitoring/
-cd gui/
-#npm install
+tar -zcvf "${WORKSPACE}/monitoring.tar.gz" "${WORKSPACE}/*"
+mv "${WORKSPACE}/monitoring.tar.gz" "${DEV_DIR}"
+
+cd "${DEV_DIR}/gui"
+npm install
