@@ -22,7 +22,8 @@ logInfo "*********** Start installation ********************"
 logInfo "Workspace : ${WORKSPACE}"
 logInfo "Deploy directory : ${DEV_DIR}"
 
-tar -zcvf "${WORKSPACE}/monitoring.tar.gz" "${WORKSPACE}/*"
+cd "${WORKSPACE}"
+tar -zcvf "monitoring.tar.gz" "${WORKSPACE}/*"
 mv "${WORKSPACE}/monitoring.tar.gz" "${DEV_DIR}"
 
 cd "${DEV_DIR}/gui"
