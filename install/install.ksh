@@ -23,7 +23,7 @@ logInfo "Workspace : ${WORKSPACE}"
 logInfo "Deploy directory : ${DEV_DIR}"
 
 cd "${WORKSPACE}"
-tar -zcvf "monitoring.tar.gz" "${WORKSPACE}/*"
+tar -zcvf "monitoring.tar.gz" ./*
 mv "${WORKSPACE}/monitoring.tar.gz" "${DEV_DIR}"
 
 cd "${DEV_DIR}/gui"
