@@ -9,6 +9,7 @@
   "author": "Mathieu ROLLAND",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^13.4.1"
+    "hapi": "^13.4.1",
+    "swig": "^1.4.2"
   }
 }
