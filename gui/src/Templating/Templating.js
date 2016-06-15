@@ -8,7 +8,9 @@ module.exports = {
 
 		console.log( "Renderer request : " , template );
 		return swig.renderFile( template , {
-			parameters : 'no'
+			title : 'Monitoring ' + process.env.HOSTNAME,
+			serverName : process.env.HOSTNAME,
+			version : '0.0.1'
 		} );
 	}
 	 
