@@ -11,12 +11,12 @@ SCRIPT_NAME=$(basename "${SCRIPT_NAME}" .ksh)
 . "${SHARED_SH_LIB}/logging.sh"
 . "${SHARED_SH_LIB}/common.sh"
 
-function usage
+usage ()
 {
 	echo "Usage"
 }
 
-function readConfig
+readConfig ()
 {
 	logInfo "Lecture du fichier de configuration"
 
@@ -45,12 +45,12 @@ function readConfig
 }
 
 
-function monitorFS
+monitorFS ()
 {
 	echo "Monitor FS"
 }
 
-function monitoringTask
+monitoringTask ()
 {
 	processName="$1"
 	echo "Monitoring process ${processName}"
