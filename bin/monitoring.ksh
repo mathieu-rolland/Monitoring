@@ -1,4 +1,4 @@
-#!/bin/ksh
+#!/bin/sh
 
 SHARED_DIRECTORY="/product/shared"
 SHARED_SH_LIB="${SHARED_DIRECTORY}/lib/sh"

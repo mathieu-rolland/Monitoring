@@ -1,4 +1,4 @@
-#!/bin/ksh
+#!/bin/sh
 
 PROJECT_DIR="/product/monitoring"
 ENVIRONNMENT_DIR="${PROJECT_DIR}/admin"

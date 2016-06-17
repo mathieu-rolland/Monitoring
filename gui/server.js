@@ -14,7 +14,7 @@ const routes = require('./src/config/routes.js');
 // Create a server with a host and port
 const server = new Hapi.Server();
 server.connection({ 
-    host: '192.168.1.23', 
+    host: '127.0.0.1', 
     port: 8820 
 });
 
