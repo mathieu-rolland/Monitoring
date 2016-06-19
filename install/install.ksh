@@ -145,3 +145,5 @@ then
 	logError "Failed to start GUI"
 	exit 1
 fi
+
+logInfo "*********** Installation end successfully *****************"

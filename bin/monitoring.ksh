@@ -61,15 +61,15 @@ monitoringTask ()
 		logError "The process ${processName} should be up"
 	fi
 
-	logInfo "Test database sql : "
-	result=$()
+	result=$(execute_sql "select * from CYCLE;")
+    logInfo "Datebase result : ${result}"
+
 
 }
 
 #
 # Init log file
 ##################################################
-
 initLog "${SCRIPT_NAME}"
 
 #
@@ -77,6 +77,7 @@ initLog "${SCRIPT_NAME}"
 # 	Start monitoring system
 ##################################################
 
+date_debut=$(date +'%Y/%m/%d %H:%M:%S')
 
 logInfo "**************** Début du script de supervision ***********************"
 
@@ -85,3 +86,7 @@ checkEnv
 
 #Start monitoring
 readConfig
+
+date_fin=$(date +'%Y/%m/%d %H:%M:%S')
+
+execute_sql_file "${SQL_FOLDER}/insert_cycle.sql" "set @date_debut=${date_debut};set @end_date=${date_fin}"

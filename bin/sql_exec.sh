@@ -6,7 +6,7 @@ execute_sql()
 	checkVariable "${LOGIN_PATH_NAME}"
 	checkVariable "${DATABASE_NAME}"
 
-	result=$(mysql --login-path="${LOGIN_PATH_NAME}" -e "${SQL_CMD}" ${DATABASE_NAME} 2> "${LOG_FILE}")
+	result=$(mysql --login-path="${LOGIN_PATH_NAME}" --skip-column-names -e "${SQL_CMD}" ${DATABASE_NAME} 2> "${LOG_FILE}")
 	retCode=$?
 	
 	if [ "${retCode}" -ne 0 ]
@@ -22,10 +22,12 @@ execute_sql()
 execute_sql_file()
 {
 	SQL_SCRIPT="${1}"
+	SQL_PARAMS="${2}"
+
 	checkVariable "${LOGIN_PATH_NAME}"
 	checkVariable "${DATABASE_NAME}"
 
-	result=$(mysql --login-path="${LOGIN_PATH_NAME}" -e "${SQL_CMD}" ${DATABASE_NAME} < ${SQL_SCRIPT} 2> "${LOG_FILE}")
+	result=$(mysql --login-path="${LOGIN_PATH_NAME}" --skip-column-names ${DATABASE_NAME} -e "${SQL_PARAMS}; source ${SQL_SCRIPT}" 2> "${LOG_FILE}")
 	retCode=$?
 	
 	if [ "${retCode}" -ne 0 ]
