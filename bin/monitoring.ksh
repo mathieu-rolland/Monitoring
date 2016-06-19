@@ -89,4 +89,4 @@ readConfig
 
 date_fin=$(date +'%Y/%m/%d %H:%M:%S')
 
-execute_sql_file "${SQL_FOLDER}/insert_cycle.sql" "set @date_debut=${date_debut};set @end_date=${date_fin}"
+execute_sql_file "${SQL_FOLDER}/insert_cycle.sql" "set @date_debut=\"${date_debut}\";set @end_date=\"${date_fin}\""
