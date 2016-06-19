@@ -10,6 +10,7 @@ SCRIPT_NAME=$(basename "${SCRIPT_NAME}" .ksh)
 
 . "${SHARED_SH_LIB}/logging.sh"
 . "${SHARED_SH_LIB}/common.sh"
+. "${PRODUCT_DIR}/bin/sql_exec.sh"
 
 usage ()
 {
@@ -30,11 +31,11 @@ readConfig ()
 
 		if [ ! -d "${folder}" ]
 		then
-			echo "The input value ${folder} should be a folder"
+			logInfo "The input value ${folder} should be a folder"
 			exit 100
 		fi
 	done
-	echo  ${CONFIG_MONITORING_FILE}
+	logInfo  "Read configuration file ${CONFIG_MONITORING_FILE}"
 	for line in $(cat "${CONFIG_MONITORING_PROCESS}")
 	do
 	       process=$(echo $line | cut -d ';' -f1)
@@ -47,18 +48,22 @@ readConfig ()
 
 monitorFS ()
 {
-	echo "Monitor FS"
+	logInfo "Monitor FS"
 }
 
 monitoringTask ()
 {
 	processName="$1"
-	echo "Monitoring process ${processName}"
+	logInfo "Monitoring process ${processName}"
 	nbProcess=$(ps -ef | grep "${processName}" | grep -v grep | wc -l)
 	if [ "${nbProcess}" -le 0 ]
 	then
 		logError "The process ${processName} should be up"
 	fi
+
+	logInfo "Test database sql : "
+	result=$()
+
 }
 
 #
