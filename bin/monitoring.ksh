@@ -62,8 +62,6 @@ monitoringTask ()
 	fi
 
 	result=$(execute_sql "select * from CYCLE;")
-    logInfo "Datebase result : ${result}"
-
 
 }
 

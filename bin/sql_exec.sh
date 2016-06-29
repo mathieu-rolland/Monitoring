@@ -27,7 +27,7 @@ execute_sql_file()
 	checkVariable "${LOGIN_PATH_NAME}"
 	checkVariable "${DATABASE_NAME}"
 
-	result=$(mysql --login-path="${LOGIN_PATH_NAME}" --skip-column-names ${DATABASE_NAME} -v -e "${SQL_PARAMS}; source ${SQL_SCRIPT};" 2>> "${LOG_FILE}")
+	result=$(mysql --login-path="${LOGIN_PATH_NAME}" --skip-column-names ${DATABASE_NAME} -e "${SQL_PARAMS}; source ${SQL_SCRIPT};" 2>> "${LOG_FILE}")
 	retCode=$?
 	
 	if [ "${retCode}" -ne 0 ]
