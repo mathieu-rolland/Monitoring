@@ -1,0 +1,54 @@
+
+entity Server{
+	idServer Long
+    name String,
+}
+
+entity Process{
+	idProcess Long,
+    command String,
+    supervisionCommand String,
+    restartCommand String
+}
+
+entity Cycle{
+	idCycle Long,
+    dateStart Date,
+    dateEnd Date,
+    processState STATE,
+    task TASK
+}	
+
+entity Alert{
+	alertId Long,
+    description String
+}
+
+entity Task{
+	idTask Int,
+    description String,
+}
+
+enum STATE {
+	WORK, OFFLINE, WARNING, ERROR, INFO
+}
+
+enum TASK{
+	PURGE, MONITOR
+}
+
+relationship OneToOne{
+	Process{Server} to Server
+}
+
+relationship ManyToOne{
+	Cycle{Monitor} to Process,
+    Cycle{Supervise} to Server,
+    Cycle{Raised} to Alert,
+    Cycle{Execute} to Task
+}
+
+dto Cycle with mapstruct
+dto Process with mapstruct
+service Server with serviceClass
+service Process with serviceClass
